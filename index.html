@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FocusFlow — a local-first Pomodoro focus timer with tasks, streaks, statistics and sounds. No account needed." />
+    <meta name="theme-color" content="#FBFBF9" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FocusFlow" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <title>FocusFlow</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a flash of the wrong theme.
+      try {
+        var saved = JSON.parse(localStorage.getItem('focusflow:theme'));
+        var dark =
+          saved === 'dark' ||
+          (saved !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) document.documentElement.classList.add('dark');
+      } catch (e) {
+        /* ignore */
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Shown only until the app bundle mounts and replaces it. -->
+      <div class="splash">
+        <img src="/icons/favicon.svg" alt="FocusFlow" width="64" height="64" />
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
